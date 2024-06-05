@@ -1,0 +1,30 @@
+@baseUrl=http://localhost:3000/api/v1
+@token=bd1606e0-5a3e-4de2-b191-6d45fb7c0e30
+@orderId=f58ea1f4-7b27-4203-9f5c-1168d23c1e01
+
+### Get orders
+
+GET {{baseUrl}}/orders
+Content-Type: application/json
+X-Session-Token: {{token}}
+
+### Get order
+
+GET {{baseUrl}}/orders/{{orderId}}
+Content-Type: application/json
+X-Session-Token: {{token}}
+
+### Create order
+
+POST {{baseUrl}}/orders
+Content-Type: application/json
+X-Session-Token: {{token}}
+
+{
+    "items": [
+        {
+            "book_id": "b8cb3d1c-1c44-4fe0-817a-1511506170df",
+            "quantity": 4
+        }
+    ]
+}

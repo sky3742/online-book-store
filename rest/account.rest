@@ -1,0 +1,28 @@
+@baseUrl=http://localhost:3000/api/v1
+@token=c8bcb7dc-438d-4341-802e-4d2798471b5e
+
+### Create account
+
+POST {{baseUrl}}/account
+Content-Type: application/json
+
+{
+    "email": "sky@gmail.com",
+    "password": "123456"
+}
+
+### Login account
+
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "sky@gmail.com",
+    "password": "123456"
+}
+
+### Logout account
+
+POST {{baseUrl}}/logout
+Content-Type: application/json
+X-Session-Token: {{token}}

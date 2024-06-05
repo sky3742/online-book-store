@@ -1,0 +1,11 @@
+@baseUrl=http://localhost:3000
+
+### Ready
+
+GET {{baseUrl}}/readyz
+Content-Type: application/json
+
+### Live
+
+GET {{baseUrl}}/livez
+Content-Type: application/json
