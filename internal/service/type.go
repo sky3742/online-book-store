@@ -11,8 +11,8 @@ type Account interface {
 }
 
 type Book interface {
-	GetBooks(ctx context.Context) ([]model.Book, error)
-	GetBook(ctx context.Context, id string) (*model.Book, error)
+	GetBooks(ctx context.Context) ([]model.Book, *model.AppError)
+	GetBook(ctx context.Context, id string) (*model.Book, *model.AppError)
 }
 
 type Order interface {

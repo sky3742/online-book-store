@@ -15,7 +15,7 @@ type Book struct {
 }
 
 // GetBook provides a mock function with given fields: ctx, id
-func (_m *Book) GetBook(ctx context.Context, id string) (*model.Book, error) {
+func (_m *Book) GetBook(ctx context.Context, id string) (*model.Book, *model.AppError) {
 	ret := _m.Called(ctx, id)
 
 	if len(ret) == 0 {
@@ -23,8 +23,8 @@ func (_m *Book) GetBook(ctx context.Context, id string) (*model.Book, error) {
 	}
 
 	var r0 *model.Book
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) (*model.Book, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, string) (*model.Book, *model.AppError)); ok {
 		return rf(ctx, id)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, string) *model.Book); ok {
@@ -35,17 +35,19 @@ func (_m *Book) GetBook(ctx context.Context, id string) (*model.Book, error) {
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string) *model.AppError); ok {
 		r1 = rf(ctx, id)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1
 }
 
 // GetBooks provides a mock function with given fields: ctx
-func (_m *Book) GetBooks(ctx context.Context) ([]model.Book, error) {
+func (_m *Book) GetBooks(ctx context.Context) ([]model.Book, *model.AppError) {
 	ret := _m.Called(ctx)
 
 	if len(ret) == 0 {
@@ -53,8 +55,8 @@ func (_m *Book) GetBooks(ctx context.Context) ([]model.Book, error) {
 	}
 
 	var r0 []model.Book
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context) ([]model.Book, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context) ([]model.Book, *model.AppError)); ok {
 		return rf(ctx)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context) []model.Book); ok {
@@ -65,10 +67,12 @@ func (_m *Book) GetBooks(ctx context.Context) ([]model.Book, error) {
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context) *model.AppError); ok {
 		r1 = rf(ctx)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1

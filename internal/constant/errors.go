@@ -17,6 +17,8 @@ const (
 
 	ErrCodeAccountNotFound   = 4041
 	ErrCodeRegisteredAccount = 4221
+	ErrCodeGetBooks          = 5001
+	ErrCodeBookNotFound      = 4042
 )
 
 const (
@@ -30,6 +32,8 @@ const (
 
 	ErrMessageAccountNotFound   = "account not found"
 	ErrMessageRegisteredAccount = "account already registered"
+	ErrMessageGetBooks          = "get books error"
+	ErrMessageBookNotFound      = "book not found"
 )
 
 var (
@@ -77,5 +81,15 @@ var (
 		HttpStatus: fiber.StatusNotFound,
 		Code:       ErrCodeAccountNotFound,
 		Message:    ErrMessageAccountNotFound,
+	}
+	ErrGetBooks = &model.AppError{
+		HttpStatus: fiber.StatusInternalServerError,
+		Code:       ErrCodeGetBooks,
+		Message:    ErrMessageGetBooks,
+	}
+	ErrBookNotFound = &model.AppError{
+		HttpStatus: fiber.StatusNotFound,
+		Code:       ErrCodeBookNotFound,
+		Message:    ErrMessageBookNotFound,
 	}
 )
