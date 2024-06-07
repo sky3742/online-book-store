@@ -6,10 +6,10 @@ import (
 	"online-book-store/internal/utils"
 )
 
-func (s *accountService) CreateAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+func (s *accountService) RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	account.HashedPassword = utils.GenerateHashPassword(account.Email, account.Password)
 
-	account, err := s.AccountRepo.CreateAccount(ctx, account)
+	account, err := s.AccountRepo.RegisterAccount(ctx, account)
 
 	return account, err
 }

@@ -21,7 +21,7 @@ func NewHandler(cfg ConfigHandler) *AccountHandler {
 }
 
 func (h *AccountHandler) SetPublicRoute(app fiber.Router) {
-	app.Post("/account", h.CreateAccount)
+	app.Post("/register", h.RegisterAccount)
 	app.Post("/login", h.LoginAccount)
 }
 

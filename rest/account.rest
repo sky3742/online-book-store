@@ -1,12 +1,12 @@
 @baseUrl=http://localhost:3000/api/v1
 @token={{login.response.body.data.token}}
 
-### Create account
-POST {{baseUrl}}/account
+### Register account
+POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-    "email": "sky@gmail.com",
+    "email": "sky1@gmail.com",
     "password": "123456"
 }
 

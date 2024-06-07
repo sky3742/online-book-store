@@ -14,12 +14,12 @@ type AccountProvider struct {
 	mock.Mock
 }
 
-// CreateAccount provides a mock function with given fields: ctx, account
-func (_m *AccountProvider) CreateAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+// GetAccount provides a mock function with given fields: ctx, account
+func (_m *AccountProvider) GetAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	ret := _m.Called(ctx, account)
 
 	if len(ret) == 0 {
-		panic("no return value specified for CreateAccount")
+		panic("no return value specified for GetAccount")
 	}
 
 	var r0 *model.Account
@@ -44,12 +44,12 @@ func (_m *AccountProvider) CreateAccount(ctx context.Context, account *model.Acc
 	return r0, r1
 }
 
-// GetAccount provides a mock function with given fields: ctx, account
-func (_m *AccountProvider) GetAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+// RegisterAccount provides a mock function with given fields: ctx, account
+func (_m *AccountProvider) RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	ret := _m.Called(ctx, account)
 
 	if len(ret) == 0 {
-		panic("no return value specified for GetAccount")
+		panic("no return value specified for RegisterAccount")
 	}
 
 	var r0 *model.Account

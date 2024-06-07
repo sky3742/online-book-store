@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_accountService_CreateAccount(t *testing.T) {
+func Test_accountService_RegisterAccount(t *testing.T) {
 	ctx := context.Background()
 
 	email := "test@email.com"
@@ -38,7 +38,7 @@ func Test_accountService_CreateAccount(t *testing.T) {
 				AccountRepo: func() *repoMock.AccountProvider {
 					mock := repoMock.AccountProvider{}
 					mock.On(
-						"CreateAccount",
+						"RegisterAccount",
 						ctx,
 						&model.Account{
 							Email:          email,
@@ -74,7 +74,7 @@ func Test_accountService_CreateAccount(t *testing.T) {
 				AccountRepo: func() *repoMock.AccountProvider {
 					mock := repoMock.AccountProvider{}
 					mock.On(
-						"CreateAccount",
+						"RegisterAccount",
 						ctx,
 						&model.Account{
 							Email:          email,
@@ -104,7 +104,7 @@ func Test_accountService_CreateAccount(t *testing.T) {
 			s := &accountService{
 				AccountRepo: tt.fields.AccountRepo,
 			}
-			got, err := s.CreateAccount(tt.args.ctx, tt.args.account)
+			got, err := s.RegisterAccount(tt.args.ctx, tt.args.account)
 			assert.Equal(t, tt.want, got)
 			assert.Equal(t, tt.wantErr, err != nil)
 		})

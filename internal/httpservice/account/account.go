@@ -7,7 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func (h *AccountHandler) CreateAccount(c *fiber.Ctx) error {
+func (h *AccountHandler) RegisterAccount(c *fiber.Ctx) error {
 	var account model.Account
 
 	err := c.BodyParser(&account)
@@ -18,7 +18,7 @@ func (h *AccountHandler) CreateAccount(c *fiber.Ctx) error {
 		})
 	}
 
-	acc, err := h.AccountService.CreateAccount(c.Context(), &account)
+	acc, err := h.AccountService.RegisterAccount(c.Context(), &account)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
 			StatusCode: fiber.StatusInternalServerError,
@@ -28,9 +28,9 @@ func (h *AccountHandler) CreateAccount(c *fiber.Ctx) error {
 
 	token := utils.CreateSession(acc.ID.String())
 
-	return c.Status(fiber.StatusOK).JSON(model.JsonResponse{
-		StatusCode: fiber.StatusOK,
-		Message:    "success create account",
+	return c.Status(fiber.StatusCreated).JSON(model.JsonResponse{
+		StatusCode: fiber.StatusCreated,
+		Message:    "success register account",
 		Data: map[string]string{
 			"token": token,
 		},

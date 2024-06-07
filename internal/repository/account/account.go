@@ -16,7 +16,7 @@ func (r *accountRepo) GetAccount(ctx context.Context, account *model.Account) (*
 	return account, result.Error
 }
 
-func (r *accountRepo) CreateAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+func (r *accountRepo) RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	result := r.db.Create(&account)
 	return account, result.Error
 }

@@ -7,7 +7,7 @@ import (
 
 type AccountProvider interface {
 	GetAccount(ctx context.Context, account *model.Account) (*model.Account, error)
-	CreateAccount(ctx context.Context, account *model.Account) (*model.Account, error)
+	RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error)
 }
 
 type BookProvider interface {
