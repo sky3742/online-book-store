@@ -12,3 +12,7 @@ start:
 
 watch:
 	air
+
+mock:
+	mockery --all --dir internal/service --output internal/service/mock
+	mockery --all --dir internal/repository --output internal/repository/mock
