@@ -6,7 +6,7 @@ POST {{baseUrl}}/register
 Content-Type: application/json
 
 {
-    "email": "sky1@gmail.com",
+    "email": "sky@gmail.com",
     "password": "123456"
 }
 
