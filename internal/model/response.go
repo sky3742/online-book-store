@@ -8,6 +8,6 @@ type JsonResponse struct {
 
 type ErrorResponse struct {
 	StatusCode int    `json:"status_code"`
-	ErrorCode  string `json:"error_code"`
+	ErrorCode  int    `json:"error_code"`
 	Message    string `json:"message"`
 }
