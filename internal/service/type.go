@@ -16,7 +16,7 @@ type Book interface {
 }
 
 type Order interface {
-	GetOrders(ctx context.Context, userID string) ([]model.Order, error)
-	GetOrder(ctx context.Context, userID, orderNo string) (*model.Order, error)
-	CreateOrder(ctx context.Context, userID string, order *model.Order) (*model.Order, error)
+	GetOrders(ctx context.Context, userID string) ([]model.Order, *model.AppError)
+	GetOrder(ctx context.Context, userID, orderNo string) (*model.Order, *model.AppError)
+	CreateOrder(ctx context.Context, userID string, order *model.Order) (*model.Order, *model.AppError)
 }

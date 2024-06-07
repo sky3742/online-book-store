@@ -1,7 +1,9 @@
 package order
 
 import (
+	"online-book-store/internal/constant"
 	"online-book-store/internal/model"
+	"online-book-store/internal/utils"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -9,12 +11,9 @@ import (
 func (h *OrderHandler) GetOrders(c *fiber.Ctx) error {
 	userID := c.Locals("userID").(string)
 
-	orders, err := h.OrderService.GetOrders(c.Context(), userID)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusInternalServerError,
-			Message:    err.Error(),
-		})
+	orders, errx := h.OrderService.GetOrders(c.Context(), userID)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
 	return c.Status(fiber.StatusOK).JSON(model.JsonResponse{
@@ -29,12 +28,9 @@ func (h *OrderHandler) GetOrder(c *fiber.Ctx) error {
 
 	orderNo := c.Params("orderNo")
 
-	data, err := h.OrderService.GetOrder(c.Context(), userID, orderNo)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusInternalServerError,
-			Message:    err.Error(),
-		})
+	data, errx := h.OrderService.GetOrder(c.Context(), userID, orderNo)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
 	return c.Status(fiber.StatusOK).JSON(model.JsonResponse{
@@ -51,21 +47,16 @@ func (h *OrderHandler) CreateOrder(c *fiber.Ctx) error {
 
 	err := c.BodyParser(&order)
 	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusBadRequest,
-			Message:    err.Error(),
-		})
+		c.Context().Logger().Printf("error parsing body: %v", err)
+		return utils.ErrorResponse(c, constant.ErrBadRequest)
 	}
 
-	data, err := h.OrderService.CreateOrder(c.Context(), userID, &order)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusInternalServerError,
-			Message:    err.Error(),
-		})
+	data, errx := h.OrderService.CreateOrder(c.Context(), userID, &order)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
-	return c.Status(fiber.StatusOK).JSON(model.JsonResponse{
+	return c.Status(fiber.StatusCreated).JSON(model.JsonResponse{
 		StatusCode: fiber.StatusCreated,
 		Message:    "success create order",
 		Data:       data,

@@ -15,7 +15,7 @@ type Order struct {
 }
 
 // CreateOrder provides a mock function with given fields: ctx, userID, order
-func (_m *Order) CreateOrder(ctx context.Context, userID string, order *model.Order) (*model.Order, error) {
+func (_m *Order) CreateOrder(ctx context.Context, userID string, order *model.Order) (*model.Order, *model.AppError) {
 	ret := _m.Called(ctx, userID, order)
 
 	if len(ret) == 0 {
@@ -23,8 +23,8 @@ func (_m *Order) CreateOrder(ctx context.Context, userID string, order *model.Or
 	}
 
 	var r0 *model.Order
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, *model.Order) (*model.Order, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, string, *model.Order) (*model.Order, *model.AppError)); ok {
 		return rf(ctx, userID, order)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, string, *model.Order) *model.Order); ok {
@@ -35,17 +35,19 @@ func (_m *Order) CreateOrder(ctx context.Context, userID string, order *model.Or
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string, *model.Order) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string, *model.Order) *model.AppError); ok {
 		r1 = rf(ctx, userID, order)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1
 }
 
 // GetOrder provides a mock function with given fields: ctx, userID, orderNo
-func (_m *Order) GetOrder(ctx context.Context, userID string, orderNo string) (*model.Order, error) {
+func (_m *Order) GetOrder(ctx context.Context, userID string, orderNo string) (*model.Order, *model.AppError) {
 	ret := _m.Called(ctx, userID, orderNo)
 
 	if len(ret) == 0 {
@@ -53,8 +55,8 @@ func (_m *Order) GetOrder(ctx context.Context, userID string, orderNo string) (*
 	}
 
 	var r0 *model.Order
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string, string) (*model.Order, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, string, string) (*model.Order, *model.AppError)); ok {
 		return rf(ctx, userID, orderNo)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, string, string) *model.Order); ok {
@@ -65,17 +67,19 @@ func (_m *Order) GetOrder(ctx context.Context, userID string, orderNo string) (*
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string, string) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string, string) *model.AppError); ok {
 		r1 = rf(ctx, userID, orderNo)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1
 }
 
 // GetOrders provides a mock function with given fields: ctx, userID
-func (_m *Order) GetOrders(ctx context.Context, userID string) ([]model.Order, error) {
+func (_m *Order) GetOrders(ctx context.Context, userID string) ([]model.Order, *model.AppError) {
 	ret := _m.Called(ctx, userID)
 
 	if len(ret) == 0 {
@@ -83,8 +87,8 @@ func (_m *Order) GetOrders(ctx context.Context, userID string) ([]model.Order, e
 	}
 
 	var r0 []model.Order
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) ([]model.Order, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, string) ([]model.Order, *model.AppError)); ok {
 		return rf(ctx, userID)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, string) []model.Order); ok {
@@ -95,10 +99,12 @@ func (_m *Order) GetOrders(ctx context.Context, userID string) ([]model.Order, e
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, string) *model.AppError); ok {
 		r1 = rf(ctx, userID)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1

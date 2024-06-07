@@ -19,6 +19,9 @@ const (
 	ErrCodeRegisteredAccount = 4221
 	ErrCodeGetBooks          = 5001
 	ErrCodeBookNotFound      = 4042
+	ErrCodeGetOrders         = 5002
+	ErrCodeOrderNotFound     = 4043
+	ErrCodeCreateOrder       = 5003
 )
 
 const (
@@ -34,6 +37,9 @@ const (
 	ErrMessageRegisteredAccount = "account already registered"
 	ErrMessageGetBooks          = "get books error"
 	ErrMessageBookNotFound      = "book not found"
+	ErrMessageGetOrders         = "get orders error"
+	ErrMessageOrderNotFound     = "order not found"
+	ErrMessageCreateOrder       = "create order error"
 )
 
 var (
@@ -91,5 +97,20 @@ var (
 		HttpStatus: fiber.StatusNotFound,
 		Code:       ErrCodeBookNotFound,
 		Message:    ErrMessageBookNotFound,
+	}
+	ErrGetOrders = &model.AppError{
+		HttpStatus: fiber.StatusInternalServerError,
+		Code:       ErrCodeGetOrders,
+		Message:    ErrMessageGetOrders,
+	}
+	ErrOrderNotFound = &model.AppError{
+		HttpStatus: fiber.StatusNotFound,
+		Code:       ErrCodeOrderNotFound,
+		Message:    ErrMessageOrderNotFound,
+	}
+	ErrCreateOrder = &model.AppError{
+		HttpStatus: fiber.StatusInternalServerError,
+		Code:       ErrCodeCreateOrder,
+		Message:    ErrMessageCreateOrder,
 	}
 )
