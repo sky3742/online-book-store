@@ -14,6 +14,9 @@ const (
 	ErrCodeConflict        = 4090
 	ErrCodeUnprocessable   = 4220
 	ErrCodeInternalServer  = 5000
+
+	ErrCodeAccountNotFound   = 4041
+	ErrCodeRegisteredAccount = 4221
 )
 
 const (
@@ -24,6 +27,9 @@ const (
 	ErrMessageForbidden       = "forbidden"
 	ErrMessageConflict        = "conflict"
 	ErrMessageUnprocessable   = "unprocessable entity"
+
+	ErrMessageAccountNotFound   = "account not found"
+	ErrMessageRegisteredAccount = "account already registered"
 )
 
 var (
@@ -61,5 +67,15 @@ var (
 		HttpStatus: fiber.StatusUnprocessableEntity,
 		Code:       ErrCodeUnprocessable,
 		Message:    ErrMessageUnprocessable,
+	}
+	ErrRegisteredAccount = &model.AppError{
+		HttpStatus: fiber.StatusUnprocessableEntity,
+		Code:       ErrCodeRegisteredAccount,
+		Message:    ErrMessageRegisteredAccount,
+	}
+	ErrAccountNotFound = &model.AppError{
+		HttpStatus: fiber.StatusNotFound,
+		Code:       ErrCodeAccountNotFound,
+		Message:    ErrMessageAccountNotFound,
 	}
 )

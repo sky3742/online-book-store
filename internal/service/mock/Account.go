@@ -15,7 +15,7 @@ type Account struct {
 }
 
 // GetAccount provides a mock function with given fields: ctx, account
-func (_m *Account) GetAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+func (_m *Account) GetAccount(ctx context.Context, account *model.Account) (*model.Account, *model.AppError) {
 	ret := _m.Called(ctx, account)
 
 	if len(ret) == 0 {
@@ -23,8 +23,8 @@ func (_m *Account) GetAccount(ctx context.Context, account *model.Account) (*mod
 	}
 
 	var r0 *model.Account
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) (*model.Account, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) (*model.Account, *model.AppError)); ok {
 		return rf(ctx, account)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) *model.Account); ok {
@@ -35,17 +35,19 @@ func (_m *Account) GetAccount(ctx context.Context, account *model.Account) (*mod
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *model.Account) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *model.Account) *model.AppError); ok {
 		r1 = rf(ctx, account)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1
 }
 
 // RegisterAccount provides a mock function with given fields: ctx, account
-func (_m *Account) RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+func (_m *Account) RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, *model.AppError) {
 	ret := _m.Called(ctx, account)
 
 	if len(ret) == 0 {
@@ -53,8 +55,8 @@ func (_m *Account) RegisterAccount(ctx context.Context, account *model.Account) 
 	}
 
 	var r0 *model.Account
-	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) (*model.Account, error)); ok {
+	var r1 *model.AppError
+	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) (*model.Account, *model.AppError)); ok {
 		return rf(ctx, account)
 	}
 	if rf, ok := ret.Get(0).(func(context.Context, *model.Account) *model.Account); ok {
@@ -65,10 +67,12 @@ func (_m *Account) RegisterAccount(ctx context.Context, account *model.Account) 
 		}
 	}
 
-	if rf, ok := ret.Get(1).(func(context.Context, *model.Account) error); ok {
+	if rf, ok := ret.Get(1).(func(context.Context, *model.Account) *model.AppError); ok {
 		r1 = rf(ctx, account)
 	} else {
-		r1 = ret.Error(1)
+		if ret.Get(1) != nil {
+			r1 = ret.Get(1).(*model.AppError)
+		}
 	}
 
 	return r0, r1

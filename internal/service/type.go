@@ -6,8 +6,8 @@ import (
 )
 
 type Account interface {
-	RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, error)
-	GetAccount(ctx context.Context, account *model.Account) (*model.Account, error)
+	RegisterAccount(ctx context.Context, account *model.Account) (*model.Account, *model.AppError)
+	GetAccount(ctx context.Context, account *model.Account) (*model.Account, *model.AppError)
 }
 
 type Book interface {

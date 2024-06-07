@@ -1,6 +1,7 @@
 package account
 
 import (
+	"online-book-store/internal/constant"
 	"online-book-store/internal/model"
 	"online-book-store/internal/utils"
 
@@ -12,18 +13,13 @@ func (h *AccountHandler) RegisterAccount(c *fiber.Ctx) error {
 
 	err := c.BodyParser(&account)
 	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusBadRequest,
-			Message:    err.Error(),
-		})
+		c.Context().Logger().Printf("error parsing body: %v", err)
+		return utils.ErrorResponse(c, constant.ErrBadRequest)
 	}
 
-	acc, err := h.AccountService.RegisterAccount(c.Context(), &account)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusInternalServerError,
-			Message:    err.Error(),
-		})
+	acc, errx := h.AccountService.RegisterAccount(c.Context(), &account)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
 	token := utils.CreateSession(acc.ID.String())
@@ -42,18 +38,13 @@ func (h *AccountHandler) LoginAccount(c *fiber.Ctx) error {
 
 	err := c.BodyParser(&account)
 	if err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusBadRequest,
-			Message:    err.Error(),
-		})
+		c.Context().Logger().Printf("error parsing body: %v", err)
+		return utils.ErrorResponse(c, constant.ErrBadRequest)
 	}
 
-	acc, err := h.AccountService.GetAccount(c.Context(), &account)
-	if err != nil {
-		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusInternalServerError,
-			Message:    err.Error(),
-		})
+	acc, errx := h.AccountService.GetAccount(c.Context(), &account)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
 	token := utils.CreateSession(acc.ID.String())
