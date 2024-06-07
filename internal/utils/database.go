@@ -1,25 +1,24 @@
-package internal
+package utils
 
 import (
 	"log"
-	"online-book-store/internal/utils"
 
 	_ "github.com/tursodatabase/libsql-client-go/libsql"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
-func InitDB() *gorm.DB {
+func InitDB(dbUrl string) *gorm.DB {
 	db, err := gorm.Open(
 		sqlite.Dialector{
 			DriverName: "libsql",
-			DSN:        utils.Config.DatabaseUrl,
+			DSN:        dbUrl,
 		},
 		&gorm.Config{},
 	)
 
 	if err != nil {
-		log.Fatalf("failed to open db %s: %s", utils.Config.DatabaseUrl, err)
+		log.Fatalf("failed to open db %s: %s", dbUrl, err)
 	}
 
 	return db
