@@ -48,7 +48,7 @@ func (h *AccountHandler) LoginAccount(c *fiber.Ctx) error {
 		})
 	}
 
-	acc, err := h.AccountService.LoginAccount(c.Context(), &account)
+	acc, err := h.AccountService.GetAccount(c.Context(), &account)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(model.ErrorResponse{
 			StatusCode: fiber.StatusInternalServerError,

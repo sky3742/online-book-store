@@ -16,3 +16,6 @@ watch:
 mock:
 	mockery --all --dir internal/service --output internal/service/mock
 	mockery --all --dir internal/repository --output internal/repository/mock
+
+test: 
+	go test ./... | grep -v "no test files"

@@ -14,7 +14,7 @@ func (s *accountService) CreateAccount(ctx context.Context, account *model.Accou
 	return account, err
 }
 
-func (s *accountService) LoginAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+func (s *accountService) GetAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	account.HashedPassword = utils.GenerateHashPassword(account.Email, account.Password)
 
 	account, err := s.AccountRepo.GetAccount(ctx, account)

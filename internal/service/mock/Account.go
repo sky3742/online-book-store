@@ -44,12 +44,12 @@ func (_m *Account) CreateAccount(ctx context.Context, account *model.Account) (*
 	return r0, r1
 }
 
-// LoginAccount provides a mock function with given fields: ctx, account
-func (_m *Account) LoginAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
+// GetAccount provides a mock function with given fields: ctx, account
+func (_m *Account) GetAccount(ctx context.Context, account *model.Account) (*model.Account, error) {
 	ret := _m.Called(ctx, account)
 
 	if len(ret) == 0 {
-		panic("no return value specified for LoginAccount")
+		panic("no return value specified for GetAccount")
 	}
 
 	var r0 *model.Account
