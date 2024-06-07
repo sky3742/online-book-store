@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"errors"
 	"online-book-store/internal/constant"
+	"online-book-store/internal/model"
 	"time"
 
 	uuid "github.com/satori/go.uuid"
@@ -28,10 +28,10 @@ func CreateSession(userID string) string {
 	return token
 }
 
-func GetSession(token string) (UserSession, error) {
+func GetSession(token string) (UserSession, *model.AppError) {
 	session, ok := sessions[token]
 	if !ok {
-		return UserSession{}, errors.New("session not found")
+		return UserSession{}, constant.ErrInvalidSession
 	}
 	return session, nil
 }

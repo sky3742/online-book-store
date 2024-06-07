@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"online-book-store/internal/model"
+	"online-book-store/internal/constant"
 	"online-book-store/internal/utils"
 
 	"github.com/gofiber/fiber/v2"
@@ -9,13 +9,13 @@ import (
 
 func SessionMiddleware(c *fiber.Ctx) error {
 	token := c.Get("X-Session-Token")
+	if token == "" {
+		return utils.ErrorResponse(c, constant.ErrMissingSession)
+	}
 
-	userSession, err := utils.GetSession(token)
-	if err != nil {
-		return c.Status(fiber.StatusUnauthorized).JSON(model.ErrorResponse{
-			StatusCode: fiber.StatusUnauthorized,
-			Message:    err.Error(),
-		})
+	userSession, errx := utils.GetSession(token)
+	if errx != nil {
+		return utils.ErrorResponse(c, errx)
 	}
 
 	c.Locals("token", token)

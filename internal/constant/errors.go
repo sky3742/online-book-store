@@ -15,6 +15,9 @@ const (
 	ErrCodeUnprocessable   = 4220
 	ErrCodeInternalServer  = 5000
 
+	ErrCodeMissingSession = 4011
+	ErrCodeInvalidSession = 4012
+
 	ErrCodeAccountNotFound   = 4041
 	ErrCodeRegisteredAccount = 4221
 	ErrCodeGetBooks          = 5001
@@ -32,6 +35,9 @@ const (
 	ErrMessageForbidden       = "forbidden"
 	ErrMessageConflict        = "conflict"
 	ErrMessageUnprocessable   = "unprocessable entity"
+
+	ErrMessageMissingSession = "missing session"
+	ErrMessageInvalidSession = "invalid session"
 
 	ErrMessageAccountNotFound   = "account not found"
 	ErrMessageRegisteredAccount = "account already registered"
@@ -77,6 +83,16 @@ var (
 		HttpStatus: fiber.StatusUnprocessableEntity,
 		Code:       ErrCodeUnprocessable,
 		Message:    ErrMessageUnprocessable,
+	}
+	ErrMissingSession = &model.AppError{
+		HttpStatus: fiber.StatusUnauthorized,
+		Code:       ErrCodeMissingSession,
+		Message:    ErrMessageMissingSession,
+	}
+	ErrInvalidSession = &model.AppError{
+		HttpStatus: fiber.StatusUnauthorized,
+		Code:       ErrCodeInvalidSession,
+		Message:    ErrMessageInvalidSession,
 	}
 	ErrRegisteredAccount = &model.AppError{
 		HttpStatus: fiber.StatusUnprocessableEntity,
