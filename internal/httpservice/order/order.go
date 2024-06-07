@@ -66,7 +66,7 @@ func (h *OrderHandler) CreateOrder(c *fiber.Ctx) error {
 	}
 
 	return c.Status(fiber.StatusOK).JSON(model.JsonResponse{
-		StatusCode: fiber.StatusOK,
+		StatusCode: fiber.StatusCreated,
 		Message:    "success create order",
 		Data:       data,
 	})
