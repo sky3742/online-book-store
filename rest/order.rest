@@ -1,21 +1,20 @@
 @baseUrl=http://localhost:3000/api/v1
-@token=bd1606e0-5a3e-4de2-b191-6d45fb7c0e30
-@orderId=f58ea1f4-7b27-4203-9f5c-1168d23c1e01
+@token={{login.response.body.data.token}}
+@orderId={{orders.response.body.data[0].id}}
+@bookId={{books.response.body.data[0].id}}
 
 ### Get orders
-
+# @name orders
 GET {{baseUrl}}/orders
 Content-Type: application/json
 X-Session-Token: {{token}}
 
 ### Get order
-
 GET {{baseUrl}}/orders/{{orderId}}
 Content-Type: application/json
 X-Session-Token: {{token}}
 
 ### Create order
-
 POST {{baseUrl}}/orders
 Content-Type: application/json
 X-Session-Token: {{token}}
@@ -23,8 +22,22 @@ X-Session-Token: {{token}}
 {
     "items": [
         {
-            "book_id": "b8cb3d1c-1c44-4fe0-817a-1511506170df",
+            "book_id": "{{bookId}}",
             "quantity": 4
         }
     ]
 }
+
+### Login account
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "sky@gmail.com",
+    "password": "123456"
+}
+
+### Get books
+# @name books
+GET {{baseUrl}}/books
