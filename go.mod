@@ -1,10 +1,12 @@
 module online-book-store
 
-go 1.22.2
+go 1.22
 
 require (
+	github.com/google/uuid v1.5.0
 	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/viper v1.19.0
+	github.com/stretchr/testify v1.9.0
 	gorm.io/gorm v1.25.10
 )
 
@@ -12,7 +14,6 @@ require (
 	github.com/antlr4-go/antlr/v4 v4.13.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
-	github.com/google/uuid v1.5.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/libsql/sqlite-antlr4-parser v0.0.0-20240327125255-dbf53b6cbf06 // indirect
@@ -21,7 +22,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
-	github.com/stretchr/testify v1.9.0 // indirect
 	gorm.io/driver/mysql v1.4.7 // indirect
 	nhooyr.io/websocket v1.8.10 // indirect
 )
